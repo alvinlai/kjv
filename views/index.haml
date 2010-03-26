@@ -88,6 +88,7 @@
     
     $('.testament_nav .new').live('click', function(event){
       event.preventDefault();
+      $('.chapter_nav').empty();
       
       $('.testament_nav .new').removeClass('selected');
       $('.testament_nav .old').removeClass('selected');
@@ -99,6 +100,7 @@
     });
     $('.testament_nav .old').live('click', function(event){
       event.preventDefault();
+      $('.chapter_nav').empty();
       
       $('.testament_nav .new').removeClass('selected');
       $('.testament_nav .old').removeClass('selected');
@@ -185,6 +187,18 @@
       $(this).addClass('selected');
       $('.verses').empty();
       get_chapter(parseInt($(this).html())-1);
+    });
+    
+    $('li').live('click', function(event){
+      event.preventDefault();
+      if ($(this).hasClass("selected_verse")){
+        $(this).removeClass('selected_verse');
+      } else {
+        $('li').removeClass('selected_verse');
+        $(this).addClass('selected_verse');
+      }
+      
+      
     });
     
     function process_select(eventx,thisx){

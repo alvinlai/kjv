@@ -156,6 +156,8 @@
             $('.chapter_nav').append('<div class="chapter">' + count + '</div>');
             count = count + 1;
           });
+          
+          $(document).find('.chapter').first().click();
         }
       });
     }
@@ -185,6 +187,8 @@
       // book xml filename
       get_book("/" + $(this).html().trim().replace(/ /g,'').toLowerCase() + ".xml");
       
+      
+      
       // load xml ajax
       // get chapters, populate chapter_nav
       
@@ -207,6 +211,7 @@
       if (current_chapter_index < $(chapters).size() - 1){
         current_chapter_index = current_chapter_index + 1;
         get_chapter(current_chapter_index);
+        $('.chapter.selected').removeClass('selected').next().addClass('selected');
       }
       
     });
@@ -216,6 +221,7 @@
       if (current_chapter_index > 0){
         current_chapter_index = current_chapter_index - 1;
         get_chapter(current_chapter_index);
+        $('.chapter.selected').removeClass('selected').prev().addClass('selected');
       }
       
       

@@ -5,6 +5,21 @@
     %link{:rel => 'stylesheet', :href =>'/stylesheets/style.css', :type => 'text/css'}
     %meta{:name => "description", :content => "KJV Reader"}
     %meta{:name => "keywords", :content => "kjv, bible, christian"}
+    %script{:type => "text/javascript", :src => "/javascripts/jquery.js"}
+    :plain
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-347521-4']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+
+      </script>
   %body
     %h1 King James Version Bible
     %h2 Conformable to the Edition of 1611 Commonly Known as the Authorized

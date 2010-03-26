@@ -133,6 +133,8 @@
         ajax_req.abort();
       }
       
+      $('.verses').empty().html("<div class='spinner'><img src='/images/spinner.gif'> Loading book..</div>")
+      
       ajax_req = $.ajax({
         type: "GET",
         url: xml_url,
@@ -180,6 +182,7 @@
     
     $('.book').live('click', function(event){
       event.preventDefault();
+      $('.chapter_next_prev').hide();
       $('.book').removeClass('selected');
       $(this).addClass('selected');
       $('.chapter_nav').empty();

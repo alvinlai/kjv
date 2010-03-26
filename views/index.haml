@@ -1,13 +1,13 @@
 .container
   .left_col
     .testament_nav
-      .old OLD
+      .old.selected OLD
       .new NEW
       .clear
     .book_chapter_nav
       .book_nav
         .old
-          .book.selected Genesis
+          .book Genesis
           .book Exodus
           .book Leviticus
           .book Numbers
@@ -88,25 +88,51 @@
     
     $('.testament_nav .new').live('click', function(event){
       event.preventDefault();
+      
+      $('.testament_nav .new').removeClass('selected');
+      $('.testament_nav .old').removeClass('selected');
+      
+      $(this).addClass('selected');
+      
       $('.book_nav .old').hide();
       $('.book_nav .new').show();
     });
     $('.testament_nav .old').live('click', function(event){
       event.preventDefault();
+      
+      $('.testament_nav .new').removeClass('selected');
+      $('.testament_nav .old').removeClass('selected');
+      
+      $(this).addClass('selected');
+      
       $('.book_nav .new').hide();
       $('.book_nav .old').show();
     });
     
     var book;
+    var book_name;
     var chapters;
+    var ajax_req;
     
     function get_book(xml_url){
-      $.ajax({
+      // to kill existing request
+      if (ajax_req != null){
+        ajax_req.abort();
+      }
+      
+      ajax_req = $.ajax({
         type: "GET",
         url: xml_url,
         dataType: "xml",
+        queue: "getbookchapters",
+        cancelExisting: true,
         success: function(xml){
           book = xml;
+
+          $(book).find('bktshort').each(function(){
+            book_name = $(this).text();
+          });
+          
           chapters = $(book).find('chapter');
           
           var count = 1;
@@ -124,8 +150,10 @@
     function get_chapter(chapter_number){
       $('.verses').empty();
       
+      
+      
       $($(chapters)[chapter_number]).find('chtitle').each(function(){
-        $('.verses').append("<h2>" + $(this).text() + "</h2>");
+        $('.verses').append("<h2>" + book_name + ", " + $(this).text() + "</h2>");
       });
       
       $('.verses').append("<ol></ol>");

@@ -142,7 +142,7 @@
       $('.chapter_nav').empty();
       
       // book xml filename
-      get_book("/" + $(this).html().trim().replace(/ /g,'') + ".xml");
+      get_book("/" + $(this).html().trim().replace(/ /g,'').toLowerCase() + ".xml");
       
       // load xml ajax
       // get chapters, populate chapter_nav

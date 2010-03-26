@@ -1,0 +1,181 @@
+.container
+  .left_col
+    .testament_nav
+      .old OLD
+      .new NEW
+      .clear
+    .book_chapter_nav
+      .book_nav
+        .old
+          .book.selected Genesis
+          .book Exodus
+          .book Leviticus
+          .book Numbers
+          .book Deuteronomy
+          .book Joshua
+          .book Judges
+          .book Ruth
+          .book 1 Samuel
+          .book 2 Samuel
+          .book 1 Kings
+          .book 2 Kings
+          .book 1 Chronicles
+          .book 2 Chronicles
+          .book Ezra
+          .book Nehemiah
+          .book Esther
+          .book Job
+          .book Psalms
+          .book Proverbs
+          .book Ecclesiastes
+          .book Song of Solomon
+          .book Isaiah
+          .book Jeremiah
+          .book Lamentations
+          .book Ezekiel
+          .book Daniel
+          .book Hosea
+          .book Joel
+          .book Amos
+          .book Obadiah
+          .book Jonah
+          .book Micah
+          .book Nahum
+          .book Habakkuk
+          .book Zephaniah
+          .book Haggai
+          .book Zechariah
+          .book Malachi
+        .new
+          .book Matthew
+          .book Mark
+          .book Luke
+          .book John
+          .book Acts
+          .book Romans
+          .book 1 Corinthians
+          .book 2 Corinthians
+          .book Galatians
+          .book Ephesians
+          .book Philippians
+          .book Colossians
+          .book 1 Thessalonians
+          .book 2 Thessalonians
+          .book 1 Timothy
+          .book 2 Timothy
+          .book Titus
+          .book Philemon
+          .book Hebrews
+          .book James
+          .book 1 Peter
+          .book 2 Peter
+          .book 1 John
+          .book 2 John
+          .book 3 John
+          .book Jude
+          .book Revelation
+      .chapter_nav
+      .clear
+  .right_col
+    .verses
+  .clear
+
+:javascript
+  $(document).ready(function(){
+    $.ajaxSetup({
+      cache: false
+    });
+    
+    $('.testament_nav .new').live('click', function(event){
+      event.preventDefault();
+      $('.book_nav .old').hide();
+      $('.book_nav .new').show();
+    });
+    $('.testament_nav .old').live('click', function(event){
+      event.preventDefault();
+      $('.book_nav .new').hide();
+      $('.book_nav .old').show();
+    });
+    
+    var book;
+    var chapters;
+    
+    function get_book(xml_url){
+      $.ajax({
+        type: "GET",
+        url: xml_url,
+        dataType: "xml",
+        success: function(xml){
+          book = xml;
+          chapters = $(book).find('chapter');
+          
+          var count = 1;
+          $(chapters).each(function(){
+            //alert($(this).text());
+            // insert chapter
+            
+            $('.chapter_nav').append('<div class="chapter">' + count + '</div>');
+            count = count + 1;
+          });
+        }
+      });
+    }
+    
+    function get_chapter(chapter_number){
+      $('.verses').empty();
+      
+      $($(chapters)[chapter_number]).find('chtitle').each(function(){
+        $('.verses').append("<h2>" + $(this).text() + "</h2>");
+      });
+      
+      $('.verses').append("<ol></ol>");
+      $($(chapters)[chapter_number]).find('v').each(function(){
+        $('.verses ol').append("<li>" + $(this).text() + "</li>");
+      });
+      
+    }
+    
+    $('.book').live('click', function(event){
+      event.preventDefault();
+      $('.book').removeClass('selected');
+      $(this).addClass('selected');
+      $('.chapter_nav').empty();
+      
+      // book xml filename
+      get_book("/" + $(this).html().trim().replace(/ /g,'') + ".xml");
+      
+      // load xml ajax
+      // get chapters, populate chapter_nav
+      
+      // chapter_nav should be able to access
+      // click, show content
+    });
+    
+    $('.chapter').live('click', function(event){
+      event.preventDefault();
+      $('.chapter').removeClass('selected');
+      $(this).addClass('selected');
+      $('.verses').empty();
+      get_chapter(parseInt($(this).html())-1);
+    });
+    
+    function process_select(eventx,thisx){
+      if (eventx.type == 'mouseover'){
+        $(thisx).addClass('hover');
+      } else {
+        $(thisx).removeClass('hover');
+      }
+    }
+    
+    $('.book').live('mouseover mouseout', function(event){
+      process_select(event, this);
+    });
+    
+    $('.chapter').live('mouseover mouseout', function(event){
+      process_select(event, this);
+    });
+    
+    $('li').live('mouseover mouseout', function(event){
+      process_select(event, this);
+    });
+  });

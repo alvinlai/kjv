@@ -1,0 +1,55 @@
+body
+  font-family: Helvetica Neue
+.clear
+  clear: both
+.selected
+  background-color: #1c5398
+  color: white
+.hover
+  background-color: #abefff
+  color: black
+
+!container_width = 800px
+!padding_width = 15px
+
+.container
+  width = !container_width
+  .left_col
+    width = !container_width * 0.25 - !padding_width
+    float: left
+    padding-right = !padding_width
+  .right_col
+    width = !container_width * 0.75
+    float: left
+
+.testament_nav
+  font-size: 2em
+  .old
+    width: 50%
+    float: left
+  .new
+    width: 50%
+    float: left
+
+.book_chapter_nav
+  .book_nav
+    float: left
+    width: 80%
+    .new
+      display: none
+  .chapter_nav
+    float: left
+    width: 20%
+
+.verses
+
+chtitle
+  font-weight: bold
+  font-size: 2em
+
+
+ol
+  list-style-type: decimal
+
+li
+  list-style: decimal

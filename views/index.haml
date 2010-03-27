@@ -96,6 +96,8 @@
       cache: false
     });
     
+    
+    
     $('.testament_nav .new').live('click', function(event){
       event.preventDefault();
       $('.chapter_nav').empty();
@@ -188,7 +190,7 @@
       $('.chapter_nav').empty();
       
       // book xml filename
-      get_book("/" + $(this).html().trim().replace(/ /g,'').toLowerCase() + ".xml");
+      get_book("/" + $(this).html().replace(/ /g,'').toLowerCase() + ".xml");
       
       
       
@@ -269,4 +271,23 @@
     $('.prev').live('mouseover mouseout', function(event){
       process_select(event, this);
     });
+    
+    
+    // reading params
+    $.urlParam = function(name){
+      var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(window.location.href);
+      return results[1] || 0;
+    }
+    
+  
+    var dest = $.urlParam('v');
+    
+    if (dest != null){
+      // find the book
+      // hide new/old testaments
+      // go to its parent show it
+      // click on it
+      $('.book:contains("' + dest + '")').first().click();
+    }
+    
   });

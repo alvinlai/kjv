@@ -290,4 +290,48 @@
       $('.book:contains("' + dest + '")').first().click();
     }
     
+    
+    
+    
+    
+  });
+  
+
+  $(document).bind('keydown', 'j', function(event){
+    event.stopPropagation();
+    event.preventDefault();
+    if ($('.selected_verse').length == 0){
+      $('li').first().addClass('selected_verse');
+    } else {
+      if ($('.selected_verse').next().length){
+        $('.selected_verse').removeClass('selected_verse').next().addClass('selected_verse');
+      }
+    }
+    
+    return false;
+  });
+  $(document).bind('keydown', 'k', function(event){
+    event.stopPropagation();
+    event.preventDefault();
+    if ($('.selected_verse').length == 0){
+      $('li').first().addClass('selected_verse');
+    } else {
+      if ($('.selected_verse').prev().length){
+       $('.selected_verse').removeClass('selected_verse').prev().addClass('selected_verse');
+      }
+    }
+    
+    return false;
+  });
+  $(document).bind('keydown', 'f', function(event){
+    event.stopPropagation();
+    event.preventDefault();
+    $('.next').first().click();
+    return false;
+  });
+  $(document).bind('keydown', 'b', function(event){
+    event.stopPropagation();
+    event.preventDefault();
+    $('.prev').first().click();
+    return false;
   });

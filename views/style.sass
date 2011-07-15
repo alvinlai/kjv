@@ -1,3 +1,6 @@
+$container_width: 800px
+$padding_width: 15px
+
 body
   font-family: Helvetica Neue
 .clear
@@ -12,17 +15,14 @@ body
   background-color: #bef4b1
   color: black
 
-!container_width = 800px
-!padding_width = 15px
-
 .container
-  width = !container_width
+  width: $container_width
   .left_col
-    width = !container_width * 0.25 - !padding_width
+    width: $container_width * 0.25 - $padding_width
     float: left
-    padding-right = !padding_width
+    padding-right: $padding_width
   .right_col
-    width = !container_width * 0.75
+    width: $container_width * 0.75
     float: left
 
 .testament_nav
@@ -47,12 +47,10 @@ body
     text-align: center
 
 .book
-  padding-left = !padding_width
+  padding-left: $padding_width
 
 .chapter
   padding: 0px 5px 0px 5px
-
-.verses
 
 chtitle
   font-weight: bold

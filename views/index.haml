@@ -296,6 +296,15 @@
     
   });
   
+  function scrollGo() {
+     var x = $(this).offset().top - 100; // 100 provides buffer in viewport
+     if ($(this).offset().top > 500){
+       $('html,body').animate({scrollTop: (x)}, 0); 
+     }
+     
+
+  }
+  
 
   $(document).bind('keydown', 'j', function(event){
     event.stopPropagation();
@@ -304,7 +313,7 @@
       $('li').first().addClass('selected_verse');
     } else {
       if ($('.selected_verse').next().length){
-        $('.selected_verse').removeClass('selected_verse').next().addClass('selected_verse');
+        $('.selected_verse').removeClass('selected_verse').next().addClass('selected_verse'); //.focus(scrollGo).focus();
       }
     }
     
@@ -317,7 +326,7 @@
       $('li').first().addClass('selected_verse');
     } else {
       if ($('.selected_verse').prev().length){
-       $('.selected_verse').removeClass('selected_verse').prev().addClass('selected_verse');
+       $('.selected_verse').removeClass('selected_verse').prev().addClass('selected_verse'); //.focus(scrollGo).focus();
       }
     }
     

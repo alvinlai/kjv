@@ -7,7 +7,8 @@ configure do
 end
 
 get '/stylesheets/style.css' do
-  header 'Content-Type' => "text/css; charset=utf-8"
+  #header 'Content-Type' => "text/css; charset=utf-8"
+  content_type 'text/css', :charset => 'utf-8'
   sass :style
 end
 

@@ -1,7 +1,7 @@
 !!!
 %html
   %head
-    %title King James Version Bible
+    %title Keyboard friendly KJV Bible
     %link{:rel => 'stylesheet', :href =>'/stylesheets/style.css', :type => 'text/css'}
     %meta{:name => "description", :content => "KJV Reader"}
     %meta{:name => "keywords", :content => "kjv, bible, christian"}
@@ -22,8 +22,8 @@
 
       </script>
   %body
-    %h1 King James Version Bible
-    %h2 Conformable to the Edition of 1611 Commonly Known as the Authorized
+    %h1 Keyboard friendly KJV Bible
+    %p Chapters: 'f', 'b' | Verses: 'j', 'k'
     = yield
     .footer
       :javascript
@@ -45,4 +45,6 @@
       %p 'b': prev chapter
       %p 'j': next verse
       %p 'k': prev verse
-      To the only wise God our Saviour, be glory and majesty, dominion and power, both now and ever. Amen.
+      
+      %p Conformable to the Edition of 1611 Commonly Known as the Authorized.
+      %p To the only wise God our Saviour, be glory and majesty, dominion and power, both now and ever. Amen.

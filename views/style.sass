@@ -1,19 +1,36 @@
-$container_width: 800px
+$container_width: 805px
 $padding_width: 15px
 
 body
-  font-family: Helvetica Neue
+  font-family: "Lucida Grande", "Helvetica Neue", "Helvetica"
 .clear
   clear: both
 .selected
   background-color: #1c5398
   color: white
+  border-radius: 7px
+  -moz-border-radius: 7px
 .selected_verse
-  color: black
   background-color: #f9ffae
+  -moz-border-radius: 7px
+  border-radius: 7px
+  color: black
 .hover
   background-color: #bef4b1
   color: black
+  -moz-border-radius: 5px
+  border-radius: 5px
+
+h2
+  font-size: 18px
+
+.verses
+  color: #808388
+  .chapter_title
+    margin-left: 15px
+    color: black
+  li
+    padding: 7px 7px 7px 7px
 
 .container
   width: $container_width
@@ -21,6 +38,7 @@ body
     width: $container_width * 0.25 - $padding_width
     float: left
     padding-right: $padding_width
+    border-right: 1px solid #cccccc
   .right_col
     width: $container_width * 0.75
     float: left
@@ -31,11 +49,13 @@ body
   .old
     width: 50%
     float: left
+    margin-bottom: 15px
   .new
     width: 50%
     float: left
+    margin-bottom: 15px
 
-.book_chapter_nav
+.book_chapter_nav  
   .book_nav
     float: left
     width: 80%
@@ -62,10 +82,10 @@ chtitle
   display: none
   .prev
     float: right
-    width: 80px
+    width: 30px
   .next
     float: right
-    width: 80px
+    width: 30px
 
 
 ol

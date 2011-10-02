@@ -79,15 +79,16 @@
   .right_col
     .chapter_next_prev
       .next
-        next >
+        →
       .prev
-        < previous
+        ←
+    .clear
     .verses
     .chapter_next_prev
       .next
-        next >
+        →
       .prev
-        < previous
+        ←
   .clear
 
 :javascript
@@ -107,7 +108,7 @@
       
       $(this).addClass('selected');
       
-      $('.book_nav .old').hide();
+      $('l_nav .old').hide();
       $('.book_nav .new').show();
     });
     $('.testament_nav .old').live('click', function(event){
@@ -162,6 +163,7 @@
           });
           
           $(document).find('.chapter').first().click();
+          $(document).find('.verses li').first().click();
         }
       });
     }
@@ -172,13 +174,15 @@
       
       
       $($(chapters)[chapter_number]).find('chtitle').each(function(){
-        $('.verses').append("<h2>" + book_name + ", " + $(this).text() + "</h2>");
+        $('.verses').append("<div class='chapter_title'><strong>" + book_name + "</strong> <span style='font-style:italic;'>" + $(this).text() + "</span></div>");
       });
       
       $('.verses').append("<ol></ol>");
       $($(chapters)[chapter_number]).find('v').each(function(){
         $('.verses ol').append("<li>" + $(this).text() + "</li>");
       });
+      
+      $(document).find('.verses li').first().click();
       
     }
     
@@ -201,6 +205,8 @@
       // click, show content
     });
     
+    
+    
     $('.chapter').live('click', function(event){
       event.preventDefault();
       $('.chapter').removeClass('selected');
@@ -210,6 +216,8 @@
       get_chapter(current_chapter_index);
       $('.chapter_next_prev').show();
     });
+    
+    
     
     $('.next').live('click', function(event){
       event.preventDefault();
@@ -243,6 +251,10 @@
       
       
     });
+    
+    $('.book').first().trigger('click');
+    
+
     
     function process_select(eventx,thisx){
       if (eventx.type == 'mouseover'){
@@ -344,3 +356,5 @@
     $('.prev').first().click();
     return false;
   });
+  
+

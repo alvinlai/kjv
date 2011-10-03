@@ -108,8 +108,9 @@
       
       $(this).addClass('selected');
       
-      $('l_nav .old').hide();
+      $('.book_nav .old').hide();
       $('.book_nav .new').show();
+      $('.book_nav .new .book').first().trigger('click');
     });
     $('.testament_nav .old').live('click', function(event){
       event.preventDefault();
@@ -122,6 +123,7 @@
       
       $('.book_nav .new').hide();
       $('.book_nav .old').show();
+      $('.book_nav .old. .book').first().trigger('click');
     });
     
     var book;
